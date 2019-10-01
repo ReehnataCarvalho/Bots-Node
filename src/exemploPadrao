@@ -1,0 +1,38 @@
+
+/*
+*
+* Arquivo: promptConfirm.js
+* Data: 01/10/2019
+* Descrição: Desenvolvimento de um Bot onde será utilizado o recurso do Prompts.confirm
+* Autor: Renata Carvalho
+*
+*/
+
+
+const restify = require('restify');
+const builder = require('botbuilder');
+
+// Configuração do Server via Restify:
+const server = restify.createServer();
+server.listen(process.env.port || process.env.PORT || 3978, () => {
+    console.log('%s Aplicação executando na porta %s', server.name, server.url);
+});
+
+// Criação do chat connect para comunicar com o serviço do bot Framework;
+const connector = new builder.ChatConnector({
+    appId: '',
+    appPassword: ''
+
+});
+
+//Endpoint para executar as mensagens para os usuarios vis Bot Emulator
+server.post('/api/messages', connector.listen());
+
+const bot = new builder.UniversalBot(connector, (session) => {
+    session.beginDialog('main')
+});
+
+//Bloco de Dialogs:
+bot.dialog('main', [
+
+]);
