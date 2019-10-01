@@ -1,7 +1,7 @@
 /*
 * Arquivo: conversacaoBot.js
 * Data: 30/09/2019
-* Descrição: Desenvolvimento de um Bot via COnsole.
+* Descrição: Desenvolvimento de um Bot via Console.
 * Autor: Renata Carvalho
 */
 
