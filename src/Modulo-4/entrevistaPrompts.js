@@ -35,12 +35,13 @@ const bot = new builder.UniversalBot(connector, (session) => {
 //Bloco de Dialogs:
 bot.dialog('main', [
     (session, results, next) =>{
+        session.userData.city = 'Campinas'
         builder.Prompts.text(session, 'Qual é o seu nome? ');
     },
 
     (session, results) => {
         session.dialogData.nome = results.response;
-        builder.Prompts.text(session, `Oi ${session.dialogData.nome}. Qual é a sua profissão?`)
+        builder.Prompts.text(session, `Oi ${session.dialogData.nome}. de ${session.userData.city} Qual é a sua profissão?`)
     },
 
     (session, results) => {
@@ -48,9 +49,9 @@ bot.dialog('main', [
         builder.Prompts.number(session, `${ session.dialogData.profissao} , a quantos anos? `)
     },
 
-    (session, results) => {
+    (session, results, ) => {
         session.dialogData.tempoProfissão = results.response;
-        builder.Prompts.number(session, `${session.dialogData.tempoProfissão} e qual é a sua idade?`)
+        builder.Prompts.number(session, `e qual é a sua idade?`)
     },
 
     (session, results) =>{
@@ -72,7 +73,7 @@ bot.dialog('main', [
             <br />Idade: **${session.dialogData.idade}**
             <br />Hora Atual: **${session.dialogData.horaAtual}**`);
         }else {
-            session.endDialog('Até a próxima.. Xauu ')
+            session.endDialog('Ok! Até a próxima.. Xauu ')
         }
     }
 ]);
